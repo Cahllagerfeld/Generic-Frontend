@@ -1,32 +1,73 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
+
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
+
+      <v-spacer></v-spacer>
+    </v-app-bar>
+
+    <v-main>
+      <router-view :key="routerViewUpdate" />
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import uijson from "./assets/ui.json";
+import Vue from "vue";
+import About from "./views/About.vue";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import { onMounted, provide, ref } from "@vue/composition-api";
+import { deUmlaut } from "./util/umlaute";
+import router from "./router/index";
+import { UI, View } from "./interfaces/ui.interface";
 
-#nav {
-  padding: 30px;
-}
+const mock = new MockAdapter(axios);
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+mock.onGet("/ui").reply(200, uijson);
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+export default Vue.extend({
+  name: "App",
+  setup() {
+    const ui = ref<UI>();
+    const routerViewUpdate = ref(0);
+
+    onMounted(async () => {
+      const response = await axios.get("/ui");
+      ui.value = response.data;
+      response.data.views.forEach((view: View) => {
+        router.addRoute({
+          path: `/${deUmlaut(view.name).toLowerCase()}`,
+          component: About,
+        });
+      });
+      routerViewUpdate.value++;
+    });
+
+    provide("ui", ui);
+
+    return {
+      routerViewUpdate,
+    };
+  },
+});
+</script>

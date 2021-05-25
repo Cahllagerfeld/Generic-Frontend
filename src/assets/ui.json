@@ -1,0 +1,16 @@
+{
+  "views": [
+    {
+      "name": "Aktivität",
+      "color": "#589644",
+      "container": [
+        {
+          "name": "general",
+          "width": 6,
+          "label": "General",
+          "components": [{}]
+        }
+      ]
+    }
+  ]
+}
