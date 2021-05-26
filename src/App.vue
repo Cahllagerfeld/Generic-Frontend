@@ -31,39 +31,41 @@
 </template>
 
 <script lang="ts">
-import uijson from "./assets/ui.json";
-import Vue from "vue";
-import About from "./views/About.vue";
-import axios from "axios";
-import MockAdapter from "axios-mock-adapter";
-import { onMounted, provide, ref } from "@vue/composition-api";
-import { deUmlaut } from "./util/umlaute";
-import router from "./router/index";
-import { UI, View } from "./interfaces/ui.interface";
+import uijson from './assets/ui.json';
+import Vue from 'vue';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
+import { onMounted, provide, ref } from '@vue/composition-api';
+import { deUmlaut } from './util/umlaute';
+import router from './router/index';
+import { UI, View } from './interfaces/ui.interface';
+import Generic from './views/Generic.vue';
 
 const mock = new MockAdapter(axios);
 
-mock.onGet("/ui").reply(200, uijson);
+mock.onGet('/ui').reply(200, uijson);
 
 export default Vue.extend({
-  name: "App",
+  name: 'App',
   setup() {
     const ui = ref<UI>();
     const routerViewUpdate = ref(0);
 
     onMounted(async () => {
-      const response = await axios.get("/ui");
+      const response = await axios.get('/ui');
       ui.value = response.data;
       response.data.views.forEach((view: View) => {
+        JSON.stringify(view.container);
         router.addRoute({
           path: `/${deUmlaut(view.name).toLowerCase()}`,
-          component: About,
+          component: Generic,
+          props: { containerData: view.container },
         });
       });
       routerViewUpdate.value++;
     });
 
-    provide("ui", ui);
+    provide('ui', ui);
 
     return {
       routerViewUpdate,

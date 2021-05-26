@@ -6,6 +6,21 @@
       "container": [
         {
           "name": "general",
+          "label": "General",
+          "components": [{}]
+        },
+        {
+          "name": "general",
+          "label": "Bautzner",
+          "components": [{}]
+        },
+        {
+          "name": "general",
+          "label": "Benjamin",
+          "components": [{}]
+        },
+        {
+          "name": "general",
           "width": 6,
           "label": "General",
           "components": [{}]
