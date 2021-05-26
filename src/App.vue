@@ -39,7 +39,7 @@ import { onMounted, provide, ref } from '@vue/composition-api';
 import { deUmlaut } from './util/umlaute';
 import router from './router/index';
 import { UI, View } from './interfaces/ui.interface';
-import Generic from './views/Generic.vue';
+import Generic from './views/GenericView.vue';
 
 const mock = new MockAdapter(axios);
 

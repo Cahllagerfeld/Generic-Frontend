@@ -1,9 +1,15 @@
-export interface Component {
-  type: string;
-  name: string;
-  label: string;
+export interface Props {
+  label?: string;
+  placeholder?: string;
 }
 
+export interface Component {
+  name: string;
+  type: string;
+  width: number;
+  props: Props;
+  fieldBinding: string;
+}
 export interface Container {
   name: string;
   width: number;

@@ -7,7 +7,22 @@
         {
           "name": "general",
           "label": "General",
-          "components": [{}]
+          "components": [
+            {
+              "name": "Amount",
+              "type": "button",
+              "width": 6,
+              "props": { "label": "Amount" },
+              "fieldBinding": "WX_GENERAL"
+            },
+            {
+              "name": "Amount",
+              "type": "textField",
+              "width": 6,
+              "props": { "label": "Amount" },
+              "fieldBinding": "WX_GENERAL"
+            }
+          ]
         },
         {
           "name": "general",
