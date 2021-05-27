@@ -9,19 +9,16 @@
         <v-sheet elevation="2" class="mx-auto my-12">
           <v-card-title>{{ container.label }}</v-card-title>
           <v-container>
-            <v-row>
+            <v-row align="center">
               <v-col
                 v-for="(component, index) in container.components"
                 :key="index"
                 :cols="component.width ? component.width : null"
-              >
-                <component
-                  class="mx-auto"
-                  :is="mapTypeToComponent(component.type)"
-                  >{{ component.name }}</component
-                >
-              </v-col></v-row
-            >
+                ><generic-component
+                  v-if="component.name"
+                  :componentData="component"
+                ></generic-component> </v-col
+            ></v-row>
           </v-container>
         </v-sheet>
       </v-col>
@@ -34,7 +31,7 @@ import { Container } from '../interfaces/ui.interface';
 import activityData from '../assets/activity.json';
 import axios from 'axios';
 import MA from 'axios-mock-adapter';
-import { mapTypeToComponent } from '../util/componentMap';
+import GenericComponent from '../components/GenericComponent.vue';
 
 const mock = new MA(axios);
 mock.onGet('/data').reply(200, activityData);
@@ -46,6 +43,9 @@ export default defineComponent({
       required: false,
     },
   },
+  components: {
+    GenericComponent,
+  },
   setup() {
     const activity = ref();
 
@@ -55,7 +55,7 @@ export default defineComponent({
       // console.log(activity.value);
     });
 
-    return { activity, mapTypeToComponent };
+    return { activity };
   },
 });
 </script>

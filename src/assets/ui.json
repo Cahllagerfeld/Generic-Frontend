@@ -6,39 +6,51 @@
       "container": [
         {
           "name": "general",
-          "label": "General",
+          "label": "Test",
           "components": [
             {
               "name": "Amount",
               "type": "button",
               "width": 6,
-              "props": { "label": "Amount" },
+              "props": { "label": "Amount", "text": "Hey" },
+              "fieldBinding": "WX_GENERAL"
+            },
+            {
+              "name": "Hallo",
+              "type": "display",
+              "width": 3,
+              "props": { "text": "Hallo", "label": "Wert1" },
+              "fieldBinding": "WX_GENERAL"
+            },
+            {
+              "name": "Hallo",
+              "type": "display",
+              "width": 3,
+              "props": { "text": "Hallo", "label": "Wert2" },
               "fieldBinding": "WX_GENERAL"
             },
             {
               "name": "Amount",
               "type": "textField",
               "width": 6,
-              "props": { "label": "Amount" },
+              "props": { "label": "Amount", "placeholder": "Baui" },
               "fieldBinding": "WX_GENERAL"
             }
           ]
         },
         {
           "name": "general",
-          "label": "Bautzner",
-          "components": [{}]
-        },
-        {
-          "name": "general",
-          "label": "Benjamin",
-          "components": [{}]
-        },
-        {
-          "name": "general",
           "width": 6,
-          "label": "General",
-          "components": [{}]
+          "label": "Button",
+          "components": [
+            {
+              "name": "Amount",
+              "type": "button",
+              "width": 6,
+              "props": { "label": "Amount", "text": "Hey" },
+              "fieldBinding": "WX_GENERAL"
+            }
+          ]
         }
       ]
     }
