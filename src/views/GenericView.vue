@@ -15,6 +15,7 @@
                 :key="index"
                 :cols="component.width ? component.width : null"
                 ><generic-component
+                  v-model="activity[component.fieldBinding]"
                   v-if="component.name"
                   :componentData="component"
                 ></generic-component> </v-col
@@ -26,15 +27,15 @@
   </v-container>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from '@vue/composition-api';
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  ref,
+} from '@vue/composition-api';
 import { Container } from '../interfaces/ui.interface';
-import activityData from '../assets/activity.json';
 import axios from 'axios';
-import MA from 'axios-mock-adapter';
 import GenericComponent from '../components/GenericComponent.vue';
-
-const mock = new MA(axios);
-mock.onGet('/data').reply(200, activityData);
 
 export default defineComponent({
   props: {
@@ -46,13 +47,13 @@ export default defineComponent({
   components: {
     GenericComponent,
   },
+  computed: {},
   setup() {
     const activity = ref();
 
     onMounted(async () => {
-      // const response = await axios.get('/data');
-      // activity.value = response.data;
-      // console.log(activity.value);
+      const response = await axios.get('/data');
+      activity.value = response.data.data;
     });
 
     return { activity };

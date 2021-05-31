@@ -40,10 +40,12 @@ import { deUmlaut } from './util/umlaute';
 import router from './router/index';
 import { UI, View } from './interfaces/ui.interface';
 import Generic from './views/GenericView.vue';
+import activityData from './assets/activity.json';
 
 const mock = new MockAdapter(axios);
 
 mock.onGet('/ui').reply(200, uijson);
+mock.onGet('/data').reply(200, activityData);
 
 export default Vue.extend({
   name: 'App',

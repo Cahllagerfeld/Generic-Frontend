@@ -11,6 +11,7 @@
     </div>
     <div v-if="componentData.type === 'textField'">
       <v-text-field
+        v-model="value"
         :placeholder="componentData.props.placeholder"
         class="mx-auto"
       ></v-text-field>
@@ -24,20 +25,32 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent, watch } from '@vue/composition-api';
 import { Component } from '../interfaces/ui.interface';
 import { mapTypeToComponent } from '../util/componentMap';
 import Display from './DisplayComponent.vue';
 
 export default defineComponent({
+  emits: ['input'],
   props: {
     componentData: {
       type: Object as () => Component,
       required: true,
     },
+    value: {
+      type: [String, Number],
+    },
   },
   components: {
     Display,
+  },
+  setup(props, { emit }) {
+    watch(
+      () => props.value,
+      (value) => {
+        emit('input', value);
+      },
+    );
   },
 });
 </script>
