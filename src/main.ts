@@ -15,6 +15,8 @@ Vue.use(PrimeVue);
 
 Vue.config.productionTip = false;
 
+store.dispatch('getUIData');
+
 new Vue({
   router,
   store,
