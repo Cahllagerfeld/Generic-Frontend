@@ -4,7 +4,7 @@ import axios from 'axios';
 import Adatper from 'axios-mock-adapter';
 import UIJson from '../assets/ui.json';
 import router from '../router/index';
-import About from '../views/About.vue';
+import DynamicView from '../views/DynamicView.vue';
 import { deUmlaut } from '../util/umlaute';
 
 const mock = new Adatper(axios);
@@ -29,7 +29,8 @@ export default new Vuex.Store({
       data.views.forEach((view: any) => {
         router.addRoute({
           path: `/${deUmlaut(view.name.toLowerCase())}`,
-          component: About,
+          component: DynamicView,
+          props: { view },
         });
       });
       commit('UPDATE_UIDATA', response.data);

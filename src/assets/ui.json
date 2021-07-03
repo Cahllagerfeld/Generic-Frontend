@@ -5,7 +5,8 @@
       "color": "#589644",
       "container": [
         {
-          "name": "general",
+          "name": "Allgemeine Informationen",
+          "width": 6,
           "label": "Test",
           "components": [
             {
@@ -18,7 +19,7 @@
           ]
         },
         {
-          "name": "general",
+          "name": "Denksch ich net",
           "width": 6,
           "label": "Button",
           "components": []
