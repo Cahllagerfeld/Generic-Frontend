@@ -2,7 +2,7 @@
   "views": [
     {
       "name": "Aktivität",
-      "color": "#589644",
+      "color": "#ff9800",
       "container": [
         {
           "name": "Allgemeine Informationen",

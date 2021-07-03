@@ -5,7 +5,7 @@
       :key="index"
       :class="'p-col-12 p-lg-' + containerData.width"
     >
-      <Container :container="containerData" />
+      <Container :container="containerData" :color="view.color" />
     </div>
   </div>
 </template>
