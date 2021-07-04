@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { FetchError } from './fetchError';
 
-const baseUrl = '';
+const baseUrl = 'https://jsonplaceholder.typicode.com';
 
 export async function fetchWithBaseUrl(url: string) {
   const fullUrl = baseUrl + url;

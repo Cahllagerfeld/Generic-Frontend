@@ -2,8 +2,8 @@
   "views": [
     {
       "name": "Aktivität",
-      "objectType": "activity",
-      "path": "aktivitaet/:id",
+      "objectType": "todos",
+      "path": "todos/:id",
       "color": "#ff9800",
       "container": [
         {
@@ -15,7 +15,7 @@
               "name": "Amount",
               "type": "Knob",
               "width": 12,
-              "props": { "label": "Amount", "placeholder": "Baui" },
+              "props": { "readonly": true },
               "fieldBinding": "Test"
             }
           ]
