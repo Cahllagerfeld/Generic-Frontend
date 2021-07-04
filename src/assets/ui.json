@@ -15,7 +15,7 @@
               "name": "Amount",
               "type": "Knob",
               "width": 12,
-              "props": { "readonly": true },
+              "props": { "readonly": false },
               "fieldBinding": "Test"
             }
           ]
@@ -25,6 +25,28 @@
           "width": 6,
           "label": "Button",
           "components": []
+        }
+      ]
+    },
+    {
+      "name": "Aktivität",
+      "objectType": "posts",
+      "path": "/",
+      "color": "#ff9800",
+      "container": [
+        {
+          "name": "Liste der Posts",
+          "width": 12,
+          "label": "Test",
+          "components": [
+            {
+              "name": "Amount",
+              "type": "PostList",
+              "width": 12,
+              "props": { "readonly": false },
+              "fieldBinding": "Test"
+            }
+          ]
         }
       ]
     }

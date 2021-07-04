@@ -9,8 +9,10 @@ import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 
 import CustomKnob from './components/customs/Knob.vue';
+import PostList from './components/customs/Posts/PostList.vue';
 
 Vue.component('Knob', CustomKnob);
+Vue.component('PostList', PostList);
 
 import VueCompositionAPI from '@vue/composition-api';
 
