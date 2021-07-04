@@ -3,7 +3,11 @@
     <Card :style="'border-left: 8px solid ' + color">
       <template #title> {{ container.name }}</template>
       <template #content>
-        <component :is="Test" />
+        <GenericComponent
+          v-for="(component, index) in container.components"
+          :key="index"
+          :component="component"
+        />
       </template>
     </Card>
   </div>
@@ -11,8 +15,8 @@
 
 <script>
 import { Vue, Component } from 'vue-property-decorator';
+import GenericComponent from './GenericComponent.vue';
 import Card from 'primevue/card';
-import Button from 'primevue/button';
 
 @Component({
   props: {
@@ -23,7 +27,7 @@ import Button from 'primevue/button';
       type: String,
     },
   },
-  components: { Card, Button },
+  components: { Card, GenericComponent },
 })
 export default class Container extends Vue {}
 </script>

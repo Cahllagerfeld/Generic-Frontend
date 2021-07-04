@@ -2,6 +2,8 @@
   "views": [
     {
       "name": "Aktivität",
+      "objectType": "activity",
+      "path": "aktivitaet/:id",
       "color": "#ff9800",
       "container": [
         {
@@ -11,8 +13,8 @@
           "components": [
             {
               "name": "Amount",
-              "type": "textField",
-              "width": 6,
+              "type": "Knob",
+              "width": 12,
               "props": { "label": "Amount", "placeholder": "Baui" },
               "fieldBinding": "Test"
             }

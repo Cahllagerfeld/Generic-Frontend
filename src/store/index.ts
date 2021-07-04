@@ -1,15 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import Adatper from 'axios-mock-adapter';
 import UIJson from '../assets/ui.json';
 import router from '../router/index';
 import DynamicView from '../views/DynamicView.vue';
-import { deUmlaut } from '../util/umlaute';
+import ActivityData from '../assets/activity.json';
 
 const mock = new Adatper(axios);
 
 mock.onGet('/ui').reply(200, UIJson);
+mock.onGet('/activity/4').reply(200, ActivityData);
 
 Vue.use(Vuex);
 
@@ -24,11 +25,11 @@ export default new Vuex.Store({
   },
   actions: {
     async getUIData({ commit }): Promise<void> {
-      const response = await axios.get('/ui');
+      const response: AxiosResponse = await axios.get('/ui');
       const data = response.data;
       data.views.forEach((view: any) => {
         router.addRoute({
-          path: `/${deUmlaut(view.name.toLowerCase())}`,
+          path: `/${view.path}`,
           component: DynamicView,
           props: { view },
         });

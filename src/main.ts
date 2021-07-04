@@ -8,6 +8,10 @@ import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 
+import CustomKnob from './components/customs/Knob.vue';
+
+Vue.component('Knob', CustomKnob);
+
 import VueCompositionAPI from '@vue/composition-api';
 
 Vue.use(VueCompositionAPI);
